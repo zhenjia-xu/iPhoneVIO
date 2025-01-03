@@ -9,7 +9,6 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
     let session = ARSession()
     let socketClient = SocketClient()
     var hostIP: String = "192.168.123.18"
-
     var hostPort: Int = 5555
     var prevTimestamp: Double = 0.0
     
@@ -23,6 +22,7 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
         super.viewDidLoad()
         setupARSession()
         subscribeToActionStream()
+        subscribeToCommandsStream()  // Added subscription to commandsStream
     }
     
     func setupARSession() {
@@ -33,9 +33,7 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
         session.run(configuration)
     }
 
-
     func subscribeToActionStream() {
-        
         ARManager.shared
             .actionStream
             .sink { [weak self] action in
@@ -48,13 +46,40 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
                         print("Reconnecting to ZMQ Publisher: \(self!.hostIP):\(self!.hostPort)")
                         self?.socketClient.connect(hostIP: self!.hostIP, hostPort: self!.hostPort)
                         self?.publishPose = true
+                        
+                        // custimized resetting steps
+                        self?.stopHapticFeedback()
                 }
             }
             .store(in: &cancellables)
-        
+    }
 
+    // Subscribe to the commandsStream from SocketClient
+    func subscribeToCommandsStream() {
+        socketClient.commandsStream
+            .sink { [weak self] commands in
+                // Handle the received list of commands (strings)
+                for command in commands {
+                    self?.handleCommand(command)
+                }
+            }
+            .store(in: &cancellables)
     }
     
+    func handleCommand(_ command: String) {
+        // Here, you can perform specific actions based on the received command
+        // For example, starting or stopping haptic feedback:
+        switch command.lowercased() {
+        case "start_haptics":
+            startHapticFeedback()
+        case "stop_haptics":
+            stopHapticFeedback()
+        default:
+            print("error: unknown command")
+        }
+    }
+
+
     // ARSessionDelegate method
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         let transform = frame.camera.transform
@@ -65,6 +90,7 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
         displayString += "z: \(String(format: "%.4f", transform[3][2]))\n"
         displayString += "fps: \(String(format: "%.3f", 1/(timestamp - self.prevTimestamp)))"
         prevTimestamp = timestamp
+
         if publishPose {
             let dataPacket = DataPacket(
                 transformMatrix: transform,
@@ -86,7 +112,7 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
                 DispatchQueue.main.async {
                     self?.hapticGenerator?.impactOccurred()
                 }
-                usleep(100000) // 100ms delay between vibrations
+                usleep(50000) // 50ms delay between vibrations
             }
         }
     }

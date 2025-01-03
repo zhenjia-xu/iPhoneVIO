@@ -1,6 +1,7 @@
 import SocketIO
 import simd
 import Combine
+import Combine
 
 class DataPacket: Codable {
     var transformMatrix: simd_float4x4
@@ -77,21 +78,15 @@ extension simd_float4x4: Codable {
     }
 }
 
-enum SocketCommand: String {
-    case startHaptics = "start_haptics"
-    case stopHaptics = "stop_haptics"
-    case unknown
-}
-
 class SocketClient{
     private var manager: SocketManager?
     private var socket: SocketIOClient?
     
+    
     var ready: Bool = false
     var socketOpened: Bool
     var prevTimestamp: Double = 0
-    
-    let commandStream = PassthroughSubject<SocketCommand, Never>()
+    let commandsStream = PassthroughSubject<[String], Never>()
     
     init(){
         socketOpened = false
@@ -107,13 +102,29 @@ class SocketClient{
         self.socket?.connect()
         
         // Check if connection is established
-        socket?.on(clientEvent: .connect) {data, ack in
+        socket?.on(clientEvent: .connect) { data, ack in
             print("Socket connected")
         }
-        socket?.on(clientEvent: .disconnect) {data, ack in
+        socket?.on(clientEvent: .disconnect) { data, ack in
             print("Socket disconnected")
         }
-        
+          
+        // Listener for "commands" event (expects a JSON array of strings)
+        socket?.on("commands") { [weak self] data, ack in
+            guard let message = data.first as? String,
+                  let jsonData = message.data(using: .utf8) else {
+                print("Received invalid command format")
+                return
+            }
+            
+            do {
+                // Decode the message as a list of strings
+                let commands = try JSONDecoder().decode([String].self, from: jsonData)
+                self?.commandsStream.send(commands) // Send list of commands to the stream
+            } catch {
+                print("Error decoding commands: \(error)")
+            }
+        }
         
         usleep(100000)
         self.ready = true
@@ -124,7 +135,6 @@ class SocketClient{
             print("Not ready to send")
             return
         }
-//        print("Start sending package, freq: \(1/(data.timestamp - prevTimestamp))Hz")
         prevTimestamp = data.timestamp
         self.ready = false
         self.socket?.emit("update", data.toJSONString() ?? "")
@@ -138,33 +148,4 @@ class SocketClient{
         self.socketOpened = false
     }
     
-    private func handleCommand(message: String) {
-        let command = SocketCommand(rawValue: message.lowercased()) ?? .unknown
-        print("Received command: \(command.rawValue)")
-        commandStream.send(command)
-    }
-    
-    private func addListeners() {
-        socket?.on(clientEvent: .connect) { data, ack in
-            print("Socket connected")
-            self.ready = true  // Mark the socket as ready
-        }
-
-        socket?.on(clientEvent: .error) { data, ack in
-            print("Socket connection error: \(data)")
-        }
-
-        socket?.on(clientEvent: .disconnect) { data, ack in
-            print("Socket disconnected")
-        }
-        
-        // Handle "command" event from server
-        socket?.on("command") { [weak self] data, _ in
-            print("Received 'command' event")
-            guard let self = self else { return }
-            if let message = data.first as? String {
-                self.handleCommand(message: message)
-            }
-        }
-    }
 }
