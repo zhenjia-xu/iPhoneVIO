@@ -1,11 +1,6 @@
-//  ContentView.swift
-//  iPhoneVIO
-//
-//  Created by David Gao on 4/26/24.
-//
-
 import SwiftUI
 import RealityKit
+import UIKit
 
 struct ContentView : View {
     @ObservedObject var viewController: ViewController = ViewController()

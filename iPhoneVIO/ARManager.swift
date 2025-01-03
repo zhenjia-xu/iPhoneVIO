@@ -1,4 +1,3 @@
-
 import Combine
 class ARManager {
     static let shared = ARManager()

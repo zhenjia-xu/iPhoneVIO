@@ -1,10 +1,3 @@
-//
-//  ARSessionManager.swift
-//  iPhoneVIO
-//
-//  Created by David Gao on 4/26/24.
-//
-
 import Foundation
 import ARKit
 import Combine
@@ -19,6 +12,13 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
 
     var hostPort: Int = 5555
     var prevTimestamp: Double = 0.0
+    
+    private var cancellables: Set<AnyCancellable> = []
+    private var publishPose: Bool = false
+    
+    private var isHapticRunning: Bool = false
+    private var hapticGenerator: UIImpactFeedbackGenerator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupARSession()
@@ -33,8 +33,6 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
         session.run(configuration)
     }
 
-    private var cancellables: Set<AnyCancellable> = []
-    private var publishPose: Bool = false
 
     func subscribeToActionStream() {
         
@@ -77,8 +75,30 @@ class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
         }
     }
     
+    func startHapticFeedback() {
+        guard !isHapticRunning else { return }
+        isHapticRunning = true
+        hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
+        hapticGenerator?.prepare()
+
+        DispatchQueue.global().async { [weak self] in
+            while self?.isHapticRunning == true {
+                DispatchQueue.main.async {
+                    self?.hapticGenerator?.impactOccurred()
+                }
+                usleep(100000) // 100ms delay between vibrations
+            }
+        }
+    }
+
+    func stopHapticFeedback() {
+        isHapticRunning = false
+        hapticGenerator = nil
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         session.pause()
+        stopHapticFeedback()
     }
 }
