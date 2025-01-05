@@ -48,9 +48,7 @@
 		1F6E8FBB2BE89BAC00DD0DFA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1F6E8FBD2BE89BAD00DD0DFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F6E8FC02BE89BAD00DD0DFA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1F6E8FC62BE89BAD00DD0DFA /* iPhoneVIOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = iPhoneVIOTests.xctest; path = "/Users/zhenjia/Projects/ios_dev/iPhoneVIO/build/Debug-iphoneos/iPhoneVIO.app/PlugIns/iPhoneVIOTests.xctest"; sourceTree = "<absolute>"; };
 		1F6E8FCA2BE89BAD00DD0DFA /* iPhoneVIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneVIOTests.swift; sourceTree = "<group>"; };
-		1F6E8FD02BE89BAD00DD0DFA /* iPhoneVIOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = iPhoneVIOUITests.xctest; path = "/Users/zhenjia/Projects/ios_dev/iPhoneVIO/build/Debug-iphoneos/iPhoneVIOUITests-Runner.app/PlugIns/iPhoneVIOUITests.xctest"; sourceTree = "<absolute>"; };
 		1F6E8FD42BE89BAD00DD0DFA /* iPhoneVIOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneVIOUITests.swift; sourceTree = "<group>"; };
 		1F6E8FD62BE89BAD00DD0DFA /* iPhoneVIOUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneVIOUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F6E8FE32BE89BE400DD0DFA /* ARAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAction.swift; sourceTree = "<group>"; };
@@ -63,6 +61,8 @@
 		BE3FBEE8296BDA811BF1F5D3 /* Pods-iPhoneVIO-iPhoneVIOUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPhoneVIO-iPhoneVIOUITests.debug.xcconfig"; path = "Target Support Files/Pods-iPhoneVIO-iPhoneVIOUITests/Pods-iPhoneVIO-iPhoneVIOUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E023A5510CA7D9CA21F72D86 /* Pods_iPhoneVIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iPhoneVIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF49CB482D2A7EB30022C04C /* iPhoneVIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPhoneVIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF49CB4C2D2A80EE0022C04C /* iPhoneVIOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPhoneVIOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF49CB4D2D2A80EE0022C04C /* iPhoneVIOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPhoneVIOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBD9B0D87942E8D561A1779 /* Pods_iPhoneVIOTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iPhoneVIOTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -103,6 +103,8 @@
 				72CEBDE9B5731AC8B04BBD99 /* Pods */,
 				DE7C46DB7F3A8ECA910DC4D8 /* Frameworks */,
 				EF49CB482D2A7EB30022C04C /* iPhoneVIO.app */,
+				EF49CB4C2D2A80EE0022C04C /* iPhoneVIOTests.xctest */,
+				EF49CB4D2D2A80EE0022C04C /* iPhoneVIOUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,7 +209,7 @@
 			);
 			name = iPhoneVIOTests;
 			productName = iPhoneVIOTests;
-			productReference = 1F6E8FC62BE89BAD00DD0DFA /* iPhoneVIOTests.xctest */;
+			productReference = EF49CB4C2D2A80EE0022C04C /* iPhoneVIOTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		1F6E8FCF2BE89BAD00DD0DFA /* iPhoneVIOUITests */ = {
@@ -227,7 +229,7 @@
 			);
 			name = iPhoneVIOUITests;
 			productName = iPhoneVIOUITests;
-			productReference = 1F6E8FD02BE89BAD00DD0DFA /* iPhoneVIOUITests.xctest */;
+			productReference = EF49CB4D2D2A80EE0022C04C /* iPhoneVIOUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */

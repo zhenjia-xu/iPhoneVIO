@@ -3,7 +3,8 @@ import ARKit
 import Combine
 
 class ViewController: UIViewController, ARSessionDelegate, ObservableObject {
-    @Published var displayString: String = ""
+    @Published var displayString: String = "x: 0.0000\n"+"y: 0.0000\n" + "z: 0.0000\n" + "fps: 60.000"
+
     @Published var buttonStates: [String: Bool] = [:]
 
     let session = ARSession()
