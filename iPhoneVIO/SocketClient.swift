@@ -98,7 +98,6 @@ class SocketClient{
         self.manager = SocketManager(socketURL: URL(string: "http://\(hostIP):\(hostPort)")!, config: [.log(true), .compress])
         usleep(100000)
         self.socket = self.manager?.defaultSocket
-        addListeners()
         self.socket?.connect()
         
         // Check if connection is established
