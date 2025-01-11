@@ -1,13 +1,13 @@
 //
-//  iPhoneVIOUITests.swift
-//  iPhoneVIOUITests
+//  TeleToolUITests.swift
+//  TeleToolUITests
 //
 //  Created by David Gao on 5/5/24.
 //
 
 import XCTest
 
-final class iPhoneVIOUITests: XCTestCase {
+final class TeleToolUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

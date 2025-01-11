@@ -1,13 +1,13 @@
 //
-//  iPhoneVIOUITestsLaunchTests.swift
-//  iPhoneVIOUITests
+//  TeleToolUITestsLaunchTests.swift
+//  TeleToolUITests
 //
 //  Created by David Gao on 5/5/24.
 //
 
 import XCTest
 
-final class iPhoneVIOUITestsLaunchTests: XCTestCase {
+final class TeleToolUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
