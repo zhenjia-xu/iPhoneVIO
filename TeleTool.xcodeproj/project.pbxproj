@@ -15,7 +15,6 @@
 		1F6E8FE82BE89BE400DD0DFA /* SocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E8FE42BE89BE400DD0DFA /* SocketClient.swift */; };
 		1F6E8FE92BE89BE400DD0DFA /* ARManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E8FE52BE89BE400DD0DFA /* ARManager.swift */; };
 		1F6E8FEA2BE89BE400DD0DFA /* ARSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E8FE62BE89BE400DD0DFA /* ARSessionManager.swift */; };
-		59246F3258B85F25D87EDC4B /* Pods_TeleTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51392A506A4F5440F5FCE8F6 /* Pods_TeleTool.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		1F6E8FE42BE89BE400DD0DFA /* SocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClient.swift; sourceTree = "<group>"; };
 		1F6E8FE52BE89BE400DD0DFA /* ARManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARManager.swift; sourceTree = "<group>"; };
 		1F6E8FE62BE89BE400DD0DFA /* ARSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSessionManager.swift; sourceTree = "<group>"; };
-		51392A506A4F5440F5FCE8F6 /* Pods_TeleTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeleTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		639C664A96325001A28FE5B9 /* Pods-TeleTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleTool.release.xcconfig"; path = "Target Support Files/Pods-TeleTool/Pods-TeleTool.release.xcconfig"; sourceTree = "<group>"; };
 		8323567A58D76EDF71A497DD /* Pods-TeleTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleTool.debug.xcconfig"; path = "Target Support Files/Pods-TeleTool/Pods-TeleTool.debug.xcconfig"; sourceTree = "<group>"; };
 		EFEB36692D3254010045A91B /* TeleTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeleTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59246F3258B85F25D87EDC4B /* Pods_TeleTool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +47,6 @@
 			children = (
 				1F6E8FB82BE89BAC00DD0DFA /* TeleTool */,
 				EFEB36692D3254010045A91B /* TeleTool.app */,
-				F495180B2B33EF9453622653 /* Frameworks */,
 				8E6CD3DBFF8D11D897966E5F /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -84,16 +80,7 @@
 				8323567A58D76EDF71A497DD /* Pods-TeleTool.debug.xcconfig */,
 				639C664A96325001A28FE5B9 /* Pods-TeleTool.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		F495180B2B33EF9453622653 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				51392A506A4F5440F5FCE8F6 /* Pods_TeleTool.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
